@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>I Love You Rody</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+        }
+        .heart {
+            color: red;
+            font-size: 300px;
+            animation: pulse 1s infinite;
+        }
+        .message {
+            color: #8b0000;
+            font-size: 40px;
+            text-align: center;
+        }
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <div class="heart">❤</div>
+        <div class="message">I Love You Rody</div>
+    </div>
+</body>
+</html>
