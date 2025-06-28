@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>إهداء إلى حبيبة</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Cairo', sans-serif;
+      background: linear-gradient(to bottom right, #ffe6eb, #fddde6);
+      color: #333;
+      text-align: center;
+      overflow-x: hidden;
+    }
+
+    header {
+      padding: 30px 20px;
+    }
+
+    h1 {
+      font-size: 3em;
+      color: #d6336c;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 1.3em;
+      max-width: 700px;
+      margin: 0 auto;
+      color: #444;
+    }
+
+    .heart {
+      font-size: 3em;
+      animation: pulse 2s infinite;
+      color: #ff4d6d;
+      margin-top: 10px;
+    }
+
+    .image-container {
+      margin: 30px 0;
+    }
+
+    img {
+      width: 90%;
+      max-width: 500px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    }
+
+    .note {
+      margin-top: 20px;
+      font-size: 1.2em;
+      color: #555;
+      line-height: 1.8;
+      padding: 0 20px;
+    }
+
+    footer {
+      margin-top: 40px;
+      padding: 10px;
+      font-size: 1em;
+      color: #666;
+    }
+
+    canvas {
+      position: absolute;
+      top: 100px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 0;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+      100% { transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>إلى أجمل حبيبة</h1>
+    <p>
+      يمكن لسه بقالنا وقت قصير مع بعض، بس كل لحظة فيها بتأكدلي إنك مختلفة فعلًا.
+      <br>
+      نظرتك، ضحكتك، وحتى سكوتك... كل حاجة فيكي خلتني أتمسك بيكي من أول يوم.
+      <br>
+      وكل يوم بيمر بحس قد إيه أنا محظوظ إنك في حياتي ❤
+    </p>
+    <div class="heart">❤</div>
+  </header>
+
+  <div class="image-container">
+    <img src="photo.jpg" alt="أنا وحبيبة">
+  </div>
+
+  <div class="note">
+    يوم السينما كان من أحلى أيام حياتي... لأنه كان اليوم اللي اعترفتلك فيه، حتى وأنا حاسس إني مش قد اللي بقوله.
+    <br><br>
+    اعترفت عشان قلبي قالّي إنك مش لازم تضيع من إيدي، وإنك مختلفة عن أي حد قابلته.
+    <br><br>
+    أنا دلوقتي مش بس معجب بيكي، أنا شايفك شريكة حياتي... وعمري ما هرجع في قراري.
+    <br><br>
+    أنا عايزك للنهاية 💖
+  </div>
+
+  <footer>
+    مع كل الحب – كريم 💌
+  </footer>
+
+  <!-- خلفية موسيقية -->
+  <audio autoplay loop>
+    <source src="https://cdn.pixabay.com/audio/2022/03/15/audio_4c64b7eb76.mp3" type="audio/mpeg">
+    متصفحك لا يدعم تشغيل الصوت.
+  </audio>
+
+  <!-- Canvas لرسم القلب بالخطوط -->
+  <canvas id="heartCanvas" width="800" height="600"></canvas>
+  <script>
+    const canvas = document.getElementById('heartCanvas');
+    const ctx = canvas.getContext('2d');
+    const particles = [];
+
+    for (let i = 0; i < 300; i++) {
+      const angle = Math.random() * Math.PI * 2;
+      const t = Math.random() * Math.PI * 2;
+      const r = 15 * (1 - Math.sin(t)) * Math.cos(t);
+      const x = 400 + 16 * Math.pow(Math.sin(t), 3) * 15 + Math.random() * 10;
+      const y = 300 - (13 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t)) * 15 + Math.random() * 10;
+
+      particles.push({
+        x,
+        y,
+        dx: Math.random() * 4 - 2,
+        dy: Math.random() * 4 - 2,
+        color: 'rgba(255, 50, 100, 0.8)'
+      });
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (let p of particles) {
+        ctx.beginPath();
+        ctx.moveTo(p.x, p.y);
+        p.x += p.dx;
+        p.y += p.dy;
+
+        if (p.x < 0 || p.x > canvas.width || p.y < 0 || p.y > canvas.height) {
+          p.x = 400;
+          p.y = 300;
+        }
+
+        ctx.lineTo(p.x + p.dx * 2, p.y + p.dy * 2);
+        ctx.strokeStyle = p.color;
+        ctx.stroke();
+      }
+      requestAnimationFrame(draw);
+    }
+
+    draw();
+  </script>
+</body>
+</html>
